@@ -1,5 +1,8 @@
 <?php
+
+
 session_start();
+
 // Change this to your connection info.
 $DATABASE_HOST = 'localhost';
 $DATABASE_USER = 'mohamed';  // legg inn brukernavnet til SQL-tilgangen
@@ -29,7 +32,7 @@ username = ?')) {
 	$stmt->store_result();
 
   if ($stmt->num_rows > 0) {
-    $stmt->bind_result($bruker_id, $password);
+    $stmt->bind_result($id, $password);
     $stmt->fetch();
     // Account exists, now we verify the password.
     // Note: remember to use password_hash in your registration file to store the hashed passwords.
@@ -40,7 +43,7 @@ if (password_verify($_POST['password'], $password)) {
       session_regenerate_id();
       $_SESSION['loggedin'] = TRUE;
       $_SESSION['name'] = $_POST['username'];
-      $_SESSION['id'] = $bruker_id;
+      $_SESSION['id'] = $id;
       header('Location: home.php');
     } else {
       // Incorrect password

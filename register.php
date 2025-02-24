@@ -1,4 +1,5 @@
 <?php
+
 // Change this to your connection info.
 $DATABASE_HOST = 'localhost';
 $DATABASE_USER = 'mohamed';  // legg inn brukernavnet til SQL-tilgangen
@@ -28,7 +29,7 @@ empty($_POST['email'])) {
 //HER LEGGES DET TIL EVENTUELLE VALIDERINGSFORMER - må ikke. (Steg 5 i manualen)
 
 // We need to check if the account with that username exists.
-if ($stmt = $con->prepare('SELECT bruker_id, passord FROM ditt_tabellnavn WHERE  brukernavn = ?')) {
+if ($stmt = $con->prepare('SELECT id, password FROM users WHERE  username = ?')) {
 	// Bind parameters (s = string, i = int, b = blob, etc), hash the password     using the PHP password_hash function.
 	$stmt->bind_param('s', $_POST['username']);
 	$stmt->execute();
@@ -40,9 +41,9 @@ if ($stmt = $con->prepare('SELECT bruker_id, passord FROM ditt_tabellnavn WHERE 
 	} else {
 	
 // Username doesn't exists, insert new account
-if ($stmt = $con->prepare('INSERT INTO ditt_tabellnavn (brukernavn, passord,     email) VALUES (?, ?, ?)')) {           //Her sjekker vi om prepare-metoden lyktes
+if ($stmt = $con->prepare('INSERT INTO users (username, password,     email) VALUES (?, ?, ?)')) {           //Her sjekker vi om prepare-metoden lyktes
 	// We do not want to expose passwords in our database, so hash the password and use password_verify when a user logs in.
-	$passord = password_hash($_POST['password'], PASSWORD_DEFAULT); //her hashes   passordet så det lagres kryptert og ikke i klartekst! Password_default er        hash-metoden.
+	$password = password_hash($_POST['password'], PASSWORD_DEFAULT); //her hashes   passordet så det lagres kryptert og ikke i klartekst! Password_default er        hash-metoden.
 	$stmt->bind_param('sss', $_POST['username'], $password, $_POST['email']);     //Lagres som tekst. Tre s-er siden det er tre variabler som er stringer.
 	$stmt->execute();
 	echo 'You have successfully registered! You can now login!';
