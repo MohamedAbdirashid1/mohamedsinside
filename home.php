@@ -67,7 +67,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	<body class="loggedin">
 		<nav class="navtop">
 			<div>
-				<h1>Nettside :></h1>
+				<h1>Nettside</h1>
 				<a href="profile.php"><i class="fas fa-user-circle"></i>Profile</a>
 				<a href="home.php"><i class="fas fa-sign-out-alt"></i>Home</a>
 				<a href="logout.php"><i class="fas fa-sign-out-alt"></i>Logout</a>

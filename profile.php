@@ -57,8 +57,8 @@ $stmt->close();
 						<td><?=htmlspecialchars($_SESSION['name'], ENT_QUOTES)?></td>
 					</tr>
 					<tr>
-						<td>Passord (jeg vet dette er usikkert..):</td>
-						<td><?=htmlspecialchars($passord, ENT_QUOTES)?></td>
+						<!--<td>Passord (jeg vet dette er usikkert..):</td>
+						<td><?=htmlspecialchars($passord, ENT_QUOTES)?></td>-->
 					</tr>
 					<tr>
 						<td>Email:</td>
