@@ -75,8 +75,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		</nav>
 		<div class="content">
 			<form action="home.php" method="post">
-				<img src="tennis.jpeg" width="150px"></img>
-				<img src="pig-tank.png"width="150px"></img>
+				<!--img src="tennis.jpeg" width="150px"></img>
+				<img src="pig-tank.png"width="150px"></img>-->
 				<h2> Hjemmeside </h2>
 				<p> Velkommen tilbake, <?=htmlspecialchars($_SESSION['name'], ENT_QUOTES)?>!</p>
 				<input type="text" name="inputfelt" placeholder="gi meg dine hemmeligheter"><br><br>
