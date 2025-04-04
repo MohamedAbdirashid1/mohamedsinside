@@ -14,7 +14,7 @@ $DATABASE_NAME = 'login_db';
 $con = mysqli_connect($DATABASE_HOST, $DATABASE_USER, $DATABASE_PASS, 
 $DATABASE_NAME);
 if (mysqli_connect_errno()) {
-	exit('Failed to connect to MySQL: ' . mysqli_connect_error());
+	exit('Kan ikke koble til MySQL: ' . mysqli_connect_error());
 }
 
 $stmt = $con->prepare('SELECT password, email FROM users WHERE id = ?');
@@ -56,7 +56,7 @@ $stmt->close();
 						<td><?=htmlspecialchars($_SESSION['name'], ENT_QUOTES)?></td>
 					</tr>
 					<tr>
-						<td>Passord:</td>
+						<td>Passord (jeg vet dette er usikkert..):</td>
 						<td><?=htmlspecialchars($passord, ENT_QUOTES)?></td>
 					</tr>
 					<tr>
