@@ -99,6 +99,7 @@ body.loggedin {
 .content {
 	width: 1000px;
 	margin: 0 auto;
+	background-color: #2446ad;
 }
 .content h2 {
 	margin: 0;

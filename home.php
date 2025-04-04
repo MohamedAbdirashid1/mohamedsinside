@@ -44,7 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		$sql1 = "SELECT * FROM textfield_data WHERE id = $brukerid;";
 		$resultat = $con->query($sql1);
 		$rad = $resultat->fetch_assoc();
-		if (!$rad["textdata"] == null or true) {
+		if (!$rad["textdata"] == null or !$rad["textdata"] == "") {
 			$tekst = $rad["textdata"];
 		}
 		else {
@@ -69,17 +69,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			<div>
 				<h1>Nettside :></h1>
 				<a href="profile.php"><i class="fas fa-user-circle"></i>Profile</a>
+				<a href="home.php"><i class="fas fa-sign-out-alt"></i>Home</a>
 				<a href="logout.php"><i class="fas fa-sign-out-alt"></i>Logout</a>
 			</div>
 		</nav>
 		<div class="content">
 			<form action="home.php" method="post">
-				<img src="tennis.jpeg"></img>
+				<img src="tennis.jpeg" width="150px"></img>
+				<img src="pig-tank.png"width="150px"></img>
 				<h2> Hjemmeside </h2>
 				<p> Velkommen tilbake, <?=htmlspecialchars($_SESSION['name'], ENT_QUOTES)?>!</p>
 				<input type="text" name="inputfelt" placeholder="gi meg dine hemmeligheter"><br><br>
-				<button type="submit" name="sigma">lagre data I server</button> 
-				<button type="submit" name="hent">hent</button> 
+				<button type="submit" name="sigma">lagre tekst</button> 
+				<button type="submit" name="hent">hent tekst</button> 
 				<p> <?php echo $tekst?></p>
 			</form>  
 		</div>
