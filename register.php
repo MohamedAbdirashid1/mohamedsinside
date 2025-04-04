@@ -1,10 +1,11 @@
 <?php
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
 
-// Change this to your connection info.
 $DATABASE_HOST = 'localhost';
-$DATABASE_USER = 'mohamed';  // legg inn brukernavnet til SQL-tilgangen
-$DATABASE_PASS = '87654321';  // legg inn ditt passord til SQL-tilgangen
-$DATABASE_NAME = 'login_db';  // legg inn navnet på databasen din
+$DATABASE_USER = 'mohamed';  
+$DATABASE_PASS = '87654321'; 
+$DATABASE_NAME = 'login_db'; 
 
 // Try and connect using the info above.
 $con = mysqli_connect($DATABASE_HOST, $DATABASE_USER, $DATABASE_PASS, 
@@ -15,13 +16,13 @@ if (mysqli_connect_errno()) {
 }
 
 // Now we check if the data was submitted, isset() function checks if the data   exists. Dette sjekker om variablene er skrevet inn i register.html.
-if (!isset($_POST['username'], $_POST['password'], $_POST['email'])) {
+if (!isset($_POST['username'], $_POST['password'], $_POST['email'], $_POST['birthday'])) {
 	// Could not get the data that should have been sent.
 	exit('Please complete the registration form!');
 }
 // Make sure the submitted registration values are not empty.
 if (empty($_POST['username']) || empty($_POST['password']) || 
-empty($_POST['email'])) {
+empty($_POST['email'] || empty($_POST['birthday']))) {
 	// One or more values are empty.
 	exit('Please complete the registration form');
 }
@@ -41,10 +42,10 @@ if ($stmt = $con->prepare('SELECT id, password FROM users WHERE  username = ?'))
 	} else {
 	
 // Username doesn't exists, insert new account
-if ($stmt = $con->prepare('INSERT INTO users (username, password,     email) VALUES (?, ?, ?)')) {           //Her sjekker vi om prepare-metoden lyktes
+if ($stmt = $con->prepare('INSERT INTO users (username, password, email, birthday) VALUES (?, ?, ?, ?)')) {           //Her sjekker vi om prepare-metoden lyktes
 	// We do not want to expose passwords in our database, so hash the password and use password_verify when a user logs in.
 	$password = password_hash($_POST['password'], PASSWORD_DEFAULT); //her hashes   passordet så det lagres kryptert og ikke i klartekst! Password_default er        hash-metoden.
-	$stmt->bind_param('sss', $_POST['username'], $password, $_POST['email']);     //Lagres som tekst. Tre s-er siden det er tre variabler som er stringer.
+	$stmt->bind_param('ssss', $_POST['username'], $password, $_POST['email'], $_POST['birthday']);     //Lagres som tekst. Tre s-er siden det er tre variabler som er stringer.
 	$stmt->execute();
 	echo 'You have successfully registered! You can now login!';
 } else {

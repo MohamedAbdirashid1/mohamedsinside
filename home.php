@@ -1,11 +1,58 @@
 <?php
-// We need to use sessions, so you should always start sessions using the below 
+//ini_set('display_errors', 1);
+//error_reporting(E_ALL);
 
+// Start økt
 session_start();
-// If the user is not logged in redirect to the login page...
+
 if (!isset($_SESSION['loggedin'])) {
 	header('Location: index.html');
 	exit;
+}
+$tekst = "Velkommen.";
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+	$DATABASE_HOST = 'localhost';
+	$DATABASE_USER = 'mohamed'; 
+	$DATABASE_PASS = '87654321'; 
+	$DATABASE_NAME = 'login_db'; 
+
+	$con = mysqli_connect($DATABASE_HOST, $DATABASE_USER, $DATABASE_PASS, $DATABASE_NAME);
+	if ( mysqli_connect_errno() ) {
+
+		exit('Failed to connect to MySQL: ' . mysqli_connect_error());
+	}
+	
+	if (isset($_POST['sigma']) and $_POST['inputfelt'] !== "") {
+		$brukerid = $_SESSION['id'];
+		$inputfeltdata = $_POST['inputfelt'];
+	
+		// MySQL spørringer
+		$sql = "INSERT INTO textfield_data (id,textdata) VALUES ($brukerid,'$inputfeltdata');";
+		$sql1 = "SELECT * FROM textfield_data WHERE id = $brukerid;";
+		$sql2 = "DELETE FROM textfield_data WHERE id = $brukerid;";
+		
+		if ($con->query($sql1)->num_rows > 0) {
+			$con->query($sql2);
+		}
+		$con->query($sql);
+
+		header("Location: home.php");
+	}
+	if (isset($_POST['hent'])) {
+		$brukerid = $_SESSION['id'];
+		$sql1 = "SELECT * FROM textfield_data WHERE id = $brukerid;";
+		$resultat = $con->query($sql1);
+		$rad = $resultat->fetch_assoc();
+		if (!$rad["textdata"] == null or true) {
+			$tekst = $rad["textdata"];
+		}
+		else {
+			$tekst = "Ingenting er lagret ennå.";
+		}
+	}
+
+	$con->close();
 }
 ?>
 
@@ -20,14 +67,21 @@ if (!isset($_SESSION['loggedin'])) {
 	<body class="loggedin">
 		<nav class="navtop">
 			<div>
-				<h1> Nettsidens tittel </h1>      //Her skriver du nettsidens navn!
+				<h1>Nettside :></h1>
 				<a href="profile.php"><i class="fas fa-user-circle"></i>Profile</a>
 				<a href="logout.php"><i class="fas fa-sign-out-alt"></i>Logout</a>
 			</div>
 		</nav>
 		<div class="content">
-			<h2> Hjemmeside </h2>
-			<p> Velkommen tilbake, <?=htmlspecialchars($_SESSION['name'], ENT_QUOTES)?>!</p>            
+			<form action="home.php" method="post">
+				<img src="tennis.jpeg"></img>
+				<h2> Hjemmeside </h2>
+				<p> Velkommen tilbake, <?=htmlspecialchars($_SESSION['name'], ENT_QUOTES)?>!</p>
+				<input type="text" name="inputfelt" placeholder="gi meg dine hemmeligheter"><br><br>
+				<button type="submit" name="sigma">lagre data I server</button> 
+				<button type="submit" name="hent">hent</button> 
+				<p> <?php echo $tekst?></p>
+			</form>  
 		</div>
 	</body>
 </html>
