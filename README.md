@@ -29,5 +29,5 @@ Det finnes også et navigeringsfelt på hjemmesiden der man kan enten logge ut, 
 
 - W3schools (hjelp)
 - Stackoverflow (hjelp og tips)
-
+-DigitalOcean (hjelp)
 
