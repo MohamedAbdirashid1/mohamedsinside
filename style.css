@@ -247,3 +247,16 @@ body {
 .login-link .login-btn:hover {
     background-color: #2868c7; /* Mørkere blå ved hover */
 }
+.footer{
+	background-color:#dee0e4;
+	border-radius: 10px;
+	padding: 2px;
+	margin-left: 10%;
+	margin-right: 10%;
+	margin-bottom: 10px;
+	margin-top: 15%;
+}
+.footer p{
+	font-size: 30px;
+	text-align: center;
+}

@@ -4,7 +4,8 @@
 
 - Registrere en bruker
 - Logge inn
-- Skrive hva som helst og lagre innholdet i serveren!
+- Skrive hva som helst og lagre tekstinnholder i serveren!
+- Du kan også hente den når som helst
 
 ### Veiledning
 
@@ -12,6 +13,7 @@ Den første siden i webserveren min er innloggingssiden. Hvis du ikke har gjort 
 
 Gratulerer! Du er nå innlogget og befinner deg nå på hjemmesiden. Der kan du finne et tekstfelt med to knapper der man kan lagre tekstfeltets innhold i serveren og hente tekstinnholdet ditt fra serveren.
 Det finnes også et navigeringsfelt på hjemmesiden der man kan enten logge ut, gå tilbake til hjemmeside (som du nå befinner deg i) og en profilknapp der man kan se over informasjon om din nåværende bruker.
+
 ### Teknologier brukt i prosjektet:
 
 - Linux
@@ -23,11 +25,6 @@ Det finnes også et navigeringsfelt på hjemmesiden der man kan enten logge ut, 
 - SSH
 - Visual Studio Code
 
-*(flere teknologier kan ha vært brukt indirekte i prosjektet)*
+*(flere teknologier kan ha vært brukt i prosjektet)*
 
 ### Kilder:
-
-- W3schools (hjelp)
-- Stackoverflow (hjelp og tips)
-- DigitalOcean (hjelp)
-
