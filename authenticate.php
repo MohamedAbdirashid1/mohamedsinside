@@ -6,7 +6,7 @@ session_start();
 $DATABASE_HOST = 'localhost';
 $DATABASE_USER = 'mohamed'; 
 $DATABASE_PASS = '87654321';  
-$DATABASE_NAME = 'login_db';  
+$DATABASE_NAME = '';  
 
 $con = mysqli_connect($DATABASE_HOST, $DATABASE_USER, $DATABASE_PASS, $DATABASE_NAME);
 if ( mysqli_connect_errno() ) {
