@@ -44,6 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		$sql1 = "SELECT * FROM textfield_data WHERE id = $brukerid;";
 		$resultat = $con->query($sql1);
 		$rad = $resultat->fetch_assoc();
+		
 		if (!$rad["textdata"] == null or !$rad["textdata"] == "") {
 			$tekst = $rad["textdata"];
 		}
