@@ -3,9 +3,9 @@ ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
 $DATABASE_HOST = 'localhost';
-$DATABASE_USER = 'mohamed';  
-$DATABASE_PASS = '87654321'; 
-$DATABASE_NAME = 'login_db'; 
+$DATABASE_USER = '';  
+$DATABASE_PASS = ''; 
+$DATABASE_NAME = ''; 
 
 $con = mysqli_connect($DATABASE_HOST, $DATABASE_USER, $DATABASE_PASS, 
 $DATABASE_NAME);
