@@ -48,11 +48,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		}
 	}
 	if (isset($_POST['hent_logg'])) {
-		$resultat = $con->query("SELECT * FROM texttable_log WHERE id = $brukerid;");
-		
-		//while ($rad = $resultat->fetch_assoc()) {
-			//echo $rad['textdata'];
-		//}
+		$brukerid = $_SESSION['id'];
+		$resultat = $con->query("SELECT * FROM texttable_log WHERE id = $brukerid");
+		$tekst = "Logg: \n";
+
+		while ($rad = $resultat->fetch_assoc()) {
+			$tekst = $tekst . "- " . $rad['textdata'] . "\n";
+		}
+	}
+	if (isset($_POST['slett_logg'])) {
+		$brukerid = $_SESSION['id'];
+		$resultat = $con->query("DELETE FROM texttable_log WHERE id = $brukerid;");
+		$tekst = "Slettet logg fra serveren.";
 	}
 
 	$con->close();
@@ -85,8 +92,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 				<input type="text" name="inputfelt" tabindex="4" placeholder="gi meg dine hemmeligheter"><br><br>
 				<button type="submit" name="lagre" tabindex="5">lagre tekst</button> 
 				<button type="submit" name="hent" tabindex="6">hent tekst</button> 
-				<button type="submit" name="hent_logg" tabindex="7">hent logg</button> 
-				<p> <?php echo $tekst?></p>
+				<button type="submit" name="hent_logg" tabindex="7">hent logg</button>
+				<button type="submit" name="slett_logg" tabindex="8">slett logg</button> 
+				<p> <?php echo nl2br(htmlspecialchars($tekst))?></p>
 			</form>  
 		</div>
 	</body>
