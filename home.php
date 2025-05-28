@@ -88,6 +88,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 				<!--img src="tennis.jpeg" width="150px"></img>
 				<img src="pig-tank.png"width="150px"></img>-->
 				<h2> Hjemmeside </h2>
+				<img src="pig-tank.png" width="220px" alt="Interessant bilde av en gris med stridsvognhjul. Mest sannsynly genert av KI.">
 				<p> Velkommen tilbake, <?=htmlspecialchars($_SESSION['name'], ENT_QUOTES)?>!</p>
 				<input type="text" name="inputfelt" tabindex="4" placeholder="gi meg dine hemmeligheter"><br><br>
 				<button type="submit" name="lagre" tabindex="5">lagre tekst</button> 

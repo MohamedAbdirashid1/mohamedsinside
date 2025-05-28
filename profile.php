@@ -17,12 +17,12 @@ if (mysqli_connect_errno()) {
 	exit('Kan ikke koble til MySQL: ' . mysqli_connect_error());
 }
 
-$stmt = $con->prepare('SELECT password, email FROM users WHERE id = ?');
+$stmt = $con->prepare('SELECT password, email, birthday FROM users WHERE id = ?');
 
 
 $stmt->bind_param('i', $_SESSION['id']);
 $stmt->execute();
-$stmt->bind_result($passord, $email);
+$stmt->bind_result($passord, $email, $bursdag);
 $stmt->fetch();
 $stmt->close();
 ?>
@@ -63,6 +63,10 @@ $stmt->close();
 					<tr>
 						<td>Email:</td>
 						<td><?=htmlspecialchars($email, ENT_QUOTES)?></td>
+					</tr>
+					<tr>
+						<td>Bursdag:</td>
+						<td><?=htmlspecialchars($bursdag, ENT_QUOTES)?></td>
 					</tr>
 				</table>
 			</div>
