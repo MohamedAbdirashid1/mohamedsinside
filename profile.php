@@ -41,9 +41,9 @@ $stmt->close();
 		<nav class="navtop">
 			<div>
 				<h1>Min profil</h1>
-				<a href="profile.php"><i class="fas fa-user-circle"></i>Profile</a>
-				<a href="home.php"><i class="fas fa-sign-out-alt"></i>Home</a>
-				<a href="logout.php"><i class="fas fa-sign-out-alt"></i>Logout</a>
+				<a href="profile.php" tabindex="1"><i class="fas fa-user-circle"></i>Profile</a>
+				<a href="home.php" tabindex="2"><i class="fas fa-sign-out-alt"></i>Home</a>
+				<a href="logout.php" tabindex="3"><i class="fas fa-sign-out-alt"></i>Logout</a>
 			</div>
 		</nav>
 		

@@ -69,9 +69,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		<nav class="navtop">
 			<div>
 				<h1>Nettside</h1>
-				<a href="profile.php"><i class="fas fa-user-circle"></i>Profile</a>
-				<a href="home.php"><i class="fas fa-sign-out-alt"></i>Home</a>
-				<a href="logout.php"><i class="fas fa-sign-out-alt"></i>Logout</a>
+				<a href="profile.php" tabindex="1"><i class="fas fa-user-circle"></i>Profile</a>
+				<a href="home.php" tabindex="2"><i class="fas fa-sign-out-alt"></i>Home</a>
+				<a href="logout.php" tabindex="3"><i class="fas fa-sign-out-alt"></i>Logout</a>
 			</div>
 		</nav>
 		<div class="content">
@@ -80,9 +80,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 				<img src="pig-tank.png"width="150px"></img>-->
 				<h2> Hjemmeside </h2>
 				<p> Velkommen tilbake, <?=htmlspecialchars($_SESSION['name'], ENT_QUOTES)?>!</p>
-				<input type="text" name="inputfelt" placeholder="gi meg dine hemmeligheter"><br><br>
-				<button type="submit" name="sigma">lagre tekst</button> 
-				<button type="submit" name="hent">hent tekst</button> 
+				<input type="text" name="inputfelt" tabindex="4" placeholder="gi meg dine hemmeligheter"><br><br>
+				<button type="submit" name="sigma" tabindex="5">lagre tekst</button> 
+				<button type="submit" name="hent" tabindex="6">hent tekst</button> 
 				<p> <?php echo $tekst?></p>
 			</form>  
 		</div>
