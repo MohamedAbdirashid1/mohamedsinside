@@ -28,9 +28,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		$inputfeltdata = $_POST['inputfelt'];
 	
 		// MySQL spørringer
-		$sql = "INSERT INTO textfield_data (id,textdata) VALUES ($brukerid,'$inputfeltdata');";
-		$sql1 = "SELECT * FROM textfield_data WHERE id = $brukerid;";
-		$sql2 = "DELETE FROM textfield_data WHERE id = $brukerid;";
+		$sql = "INSERT INTO texttable (id,textdata) VALUES ($brukerid,'$inputfeltdata');";
+		$sql1 = "SELECT * FROM texttable WHERE id = $brukerid;";
+		$sql2 = "DELETE FROM texttable WHERE id = $brukerid;";
 		
 		if ($con->query($sql1)->num_rows > 0) {
 			$con->query($sql2);
@@ -41,7 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	}
 	if (isset($_POST['hent'])) {
 		$brukerid = $_SESSION['id'];
-		$sql1 = "SELECT * FROM textfield_data WHERE id = $brukerid;";
+		$sql1 = "SELECT * FROM texttable WHERE id = $brukerid;";
 		$resultat = $con->query($sql1);
 		$rad = $resultat->fetch_assoc();
 		
