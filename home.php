@@ -23,26 +23,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		exit('Kan ikke koble til MySQL: ' . mysqli_connect_error());
 	}
 	
-	if (isset($_POST['sigma']) and $_POST['inputfelt'] !== "") {
+	if (isset($_POST['lagre']) and $_POST['inputfelt'] !== "") {
 		$brukerid = $_SESSION['id'];
 		$inputfeltdata = $_POST['inputfelt'];
-	
-		// MySQL spørringer
-		$sql = "INSERT INTO texttable (id,textdata) VALUES ($brukerid,'$inputfeltdata');";
-		$sql1 = "SELECT * FROM texttable WHERE id = $brukerid;";
-		$sql2 = "DELETE FROM texttable WHERE id = $brukerid;";
-		
-		if ($con->query($sql1)->num_rows > 0) {
-			$con->query($sql2);
+
+		if ($con->query("SELECT * FROM texttable WHERE id = $brukerid;")->num_rows > 0) {
+			$con->query("DELETE FROM texttable WHERE id = $brukerid;");
 		}
-		$con->query($sql);
+		$con->query("INSERT INTO texttable (id,textdata) VALUES ($brukerid,'$inputfeltdata');");
+		$con->query("INSERT INTO texttable_log (id,textdata) VALUES ($brukerid,'$inputfeltdata');");
 
 		header("Location: home.php");
 	}
 	if (isset($_POST['hent'])) {
 		$brukerid = $_SESSION['id'];
-		$sql1 = "SELECT * FROM texttable WHERE id = $brukerid;";
-		$resultat = $con->query($sql1);
+		$resultat = $con->query("SELECT * FROM texttable WHERE id = $brukerid;");
 		$rad = $resultat->fetch_assoc();
 		
 		if (!$rad["textdata"] == null or !$rad["textdata"] == "") {
@@ -51,6 +46,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		else {
 			$tekst = "Ingenting er lagret ennå.";
 		}
+	}
+	if (isset($_POST['hent_logg'])) {
+		$resultat = $con->query("SELECT * FROM texttable_log WHERE id = $brukerid;");
+		
+		//while ($rad = $resultat->fetch_assoc()) {
+			//echo $rad['textdata'];
+		//}
 	}
 
 	$con->close();
@@ -81,8 +83,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 				<h2> Hjemmeside </h2>
 				<p> Velkommen tilbake, <?=htmlspecialchars($_SESSION['name'], ENT_QUOTES)?>!</p>
 				<input type="text" name="inputfelt" tabindex="4" placeholder="gi meg dine hemmeligheter"><br><br>
-				<button type="submit" name="sigma" tabindex="5">lagre tekst</button> 
+				<button type="submit" name="lagre" tabindex="5">lagre tekst</button> 
 				<button type="submit" name="hent" tabindex="6">hent tekst</button> 
+				<button type="submit" name="hent_logg" tabindex="7">hent logg</button> 
 				<p> <?php echo $tekst?></p>
 			</form>  
 		</div>
