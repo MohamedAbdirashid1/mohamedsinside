@@ -13,9 +13,9 @@ $tekst = "Velkommen.";
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 	$DATABASE_HOST = 'localhost';
-	$DATABASE_USER = ''; 
-	$DATABASE_PASS = ''; 
-	$DATABASE_NAME = ''; 
+	$DATABASE_USER = 'eksamen'; 
+	$DATABASE_PASS = '87654321';  
+	$DATABASE_NAME = 'login_db';  
 
 	$con = mysqli_connect($DATABASE_HOST, $DATABASE_USER, $DATABASE_PASS, $DATABASE_NAME);
 	if ( mysqli_connect_errno() ) {
